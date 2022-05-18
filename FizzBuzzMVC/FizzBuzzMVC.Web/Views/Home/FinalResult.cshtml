@@ -1,0 +1,94 @@
+﻿@*@Styles.Render("~/Content/MyStylesSheet.css")
+<link rel="stylesheet" href="MyStylesSheet.css" type="text/css">
+
+<style type="text/css">
+    p.word1 {color: green}
+    span.word2 {color: blue}
+    </style>
+
+@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<FizzBuzzMVC.Web.Models.GameResult>
+@model FizzBuzzMVC.Web.Models.GameResult
+
+@{
+    ViewBag.Title = "FinalResult";
+}
+
+<h2>This is your result</h2> 
+
+@{
+    //var gameResult = (FizzBuzzMVC.Web.Models.GameResult)Model ;           
+    //foreach (var item in gameResult.StoredResult) //Model.StoredResult
+    //foreach (string item in Model.StoredResult)
+    var gameresult = 
+    foreach (string item in gameresult)
+    {
+        if (item.Equals("fizz buzz"))
+        {
+            <p class="word1"> fizz <span class="word2"> buzz </span></p>
+
+            //<span style="color:green";>fizz </span><span style="color:blue";>fuzz</span>  // an alternative to creating css classes
+        }
+        else if (item.Equals("fizz"))
+        {
+            <p style="color: green;"> fizz </p>
+        }
+        else if (item.Equals("buzz"))
+        //else if (item == "buzz")
+        {
+            <p style="color: blue;"> buzz </p>
+        }
+        else if (item.Equals("wizz wuzz"))
+        {
+            <p class="word1"> wizz <span class="word2"> wuzz </span></p>
+        }
+        else if (item.Equals("wizz"))
+        {
+            <p style="color: green;"> wizz </p>
+        }
+        else if (item.Equals("wuzz"))
+        {
+            <p style="color: blue;"> wuzz </p>
+        }
+        else
+        {
+            <p>@item</p>
+        }
+    }
+}
+
+@Html.PagedListPager(Model, page => Url.Action("FinalResult",
+    new { page,
+            searshBy = Request.QueryString["searchBy"],
+            search = Request.QueryString["search"]
+        }))
+
+<div style="margin:5px;">
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount)
+
+    @Html.PagedListPager(Model, Page => Url.Action("FinalResult",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>
+
+<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+
+    </table>*@

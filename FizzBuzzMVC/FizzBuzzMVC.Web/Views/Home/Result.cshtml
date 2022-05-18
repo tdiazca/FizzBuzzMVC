@@ -1,0 +1,72 @@
+﻿@using PagedList
+@using PagedList.Mvc
+
+@model List<string>
+
+@*@model PagedList.IPagedList*@
+@*@model PagedList.IPagedList<List<string>>*@
+
+
+@Styles.Render("~/Content/MyStylesSheet.css")
+<link rel="stylesheet" href="MyStylesSheet.css" type="text/css">
+
+@*<link href="~/Content/PagedList.css" rel="stylesheet"
+    type="text/css" />*@
+
+@*<style type="text/css">
+    p.word1 {color: green}
+    span.word2 {color: blue}
+    </style>*@
+
+@{
+    ViewBag.Title = "Result";
+}
+
+<h2>This is your result</h2>
+
+@*@Html.DisplayNameFor(Model => Model.FirstItemOnPage)*@
+
+@{
+    foreach (var item in Model)
+    {
+        if (item.Equals("fizz buzz"))
+        {
+            <p class="word1"> fizz <span class="word2"> buzz </span></p>
+
+            //<span style="color:green";>fizz </span><span style="color:blue";>fuzz</span>  // an alternative to creating css classes
+        }
+        else if (item.Equals("fizz"))
+        {
+            <p style="color: green;"> fizz </p>
+        }
+        else if (item.Equals("buzz"))
+        {
+            <p style="color: blue;"> buzz </p>
+        }
+        else if (item.Equals("wizz wuzz"))
+        {
+            <p class="word1"> wizz <span class="word2"> wuzz </span></p>
+        }
+        else if (item.Equals("wizz"))
+        {
+            <p style="color: green;"> wizz </p>
+        }
+        else if (item.Equals("wuzz"))
+        {
+            <p style="color: blue;"> wuzz </p>
+        }
+        else
+        {
+            <p>@item</p>
+        }
+    }
+}
+
+@*<div style="margin:5px;">
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Result",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>*@
+
+

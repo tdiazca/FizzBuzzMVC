@@ -1,0 +1,16 @@
+﻿@model FizzBuzzMVC.Web.Models.Number
+
+@{
+    ViewBag.Title = "Invalid input";
+}
+
+<p><strong>Your input was not valid, please, try again.</strong></p>
+
+@using (Html.BeginForm("Result", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.LabelFor(x => x.NumberEntered, "Please, enter a number between 1 and 1000")
+    @Html.TextBoxFor(x => x.NumberEntered)
+
+    <input type="submit" value="Submit Data" id="btnSubmit" />
+}
